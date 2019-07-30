@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'ngx-customers',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnInit {
-
-  constructor() { }
+  public id: string;
+  constructor(private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    console.log(this.activatedRoute);
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
 
 }

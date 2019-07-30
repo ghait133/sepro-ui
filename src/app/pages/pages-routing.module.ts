@@ -6,7 +6,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import {CustomerDetailsComponent} from './customer-modul/pages/customer-details/customer-details.component';
-import {CustomerComponent} from './customer-modul/customer.component';
 import {CustomersComponent} from './customer-modul/pages/customers/customers.component';
 
 const routes: Routes = [{
@@ -14,7 +13,7 @@ const routes: Routes = [{
   component: PagesComponent,
   children: [
     {
-      path: 'kunden',
+      path: 'kunden/:id',
       children: [
         {
           path: '',
