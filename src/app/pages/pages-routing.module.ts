@@ -5,22 +5,22 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import {CustomerDetailsComponent} from './customer-modul/pages/customer-details/customer-details.component';
-import {CustomersComponent} from './customer-modul/pages/customers/customers.component';
+import {CustomerDetailsComponent} from './customer-modul/customer-details/customer-details.component';
+import {CustomersComponent} from './customer-modul/customers/customers.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'kunden/:id',
+      path: 'kunden',
       children: [
         {
           path: '',
           component: CustomersComponent,
         },
         {
-          path: 'details',
+          path: 'kunden/:id',
           component: CustomerDetailsComponent,
         },
       ],

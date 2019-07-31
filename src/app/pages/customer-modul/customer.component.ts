@@ -4,7 +4,11 @@ import { Component, OnInit } from '@angular/core';
   selector: 'ngx-app-customer',
   styleUrls: ['./customer.component.scss'],
   template: `
-    <p>Customer Works!</p>
+    <nb-card accent="info">
+      <nb-card-header>Nebula</nb-card-header>
+      <nb-card-body>
+      </nb-card-body>
+    </nb-card>
   `,
 })
 export class CustomerComponent implements OnInit {

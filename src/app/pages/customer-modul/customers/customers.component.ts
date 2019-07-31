@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
+import { CustomerData } from '../customer-core/data/customer';
+
+
 @Component({
   selector: 'ngx-customers',
   templateUrl: './customers.component.html',
@@ -8,13 +11,14 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class CustomersComponent implements OnInit {
   public id: string;
+  costumers: CustomerData;
   constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    console.log(this.activatedRoute);
+    // console.log(this.activatedRoute);
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
+   // console.log(this.id);
   }
 
 }
