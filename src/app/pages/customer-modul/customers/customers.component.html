@@ -8,14 +8,15 @@
       <nb-card size="tiny">
         <nb-card-header>Kundenübersicht</nb-card-header>
         <nb-card-body>
-          <nb-list>
-            <nb-list-item>
-              dadasd
-            </nb-list-item>
-            <nb-list-item *ngFor="let customer of costumers">
-              i
-            </nb-list-item>
-          </nb-list>
+
+            <nb-card size="small">\n' +
+              '      <nb-list>\n' +
+                '        <nb-list-item *ngFor="let hero of heroes">\n' +
+                  '          {{hero.name}} +
+                  '        </nb-list-item>\n' +
+                '      </nb-list>\n' +
+              '    </nb-card>'
+
         </nb-card-body>
       </nb-card>
 

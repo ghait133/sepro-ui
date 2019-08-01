@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HEROES } from '../customer-core/mock/mock-hero';
 
 @Component({
   selector: 'ngx-customer-details',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer-details.component.scss'],
 })
 export class CustomerDetailsComponent implements OnInit {
+
+  heroes = HEROES;
 
   constructor() { }
 

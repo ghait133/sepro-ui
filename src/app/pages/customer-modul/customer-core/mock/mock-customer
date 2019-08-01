@@ -6,7 +6,7 @@ import {Customer, CustomerData} from '../data/customer';
 @Injectable()
 export class CustomerService extends CustomerData {
   // @ts-ignore
-  private customerData: Customer[] = [
+  /*customerData: Customer[]= [
     {
       id: 1,
       name: 'Hans',
@@ -24,9 +24,10 @@ export class CustomerService extends CustomerData {
       lastVisit: Date.prototype,
       systemCustomer: false,
     },
-  ];
-  getAllCustomer(): Observable<Customer[]> {
-    return observableOf(this.customerData);
+  ]; */
+
+  getAllCustomer(): Customer[] {
+    return this.customerData;
   }
 
   getCustomerById(id: number): Observable<Customer> {

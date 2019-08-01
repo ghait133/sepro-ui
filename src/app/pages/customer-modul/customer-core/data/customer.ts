@@ -12,7 +12,7 @@ export interface Customer {
 
 export abstract class CustomerData {
 // getter
-  abstract getAllCustomer(): Observable<Customer[]>;
+  abstract getAllCustomer(): Customer[];
   abstract getCustomerById(id: number): Observable<Customer>;
   abstract getCustomerByPhoneNumber(phoneNumber: string): Observable<Customer>;
 

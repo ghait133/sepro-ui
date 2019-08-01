@@ -7,7 +7,6 @@ import {NbCardModule, NbListModule} from '@nebular/theme';
 import {CommonModule} from '@angular/common';
 
 
-
 @NgModule({
   declarations: [ CustomerComponent, CustomersComponent, CustomerDetailsComponent],
   imports: [

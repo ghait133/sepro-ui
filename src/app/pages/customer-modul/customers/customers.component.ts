@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import { CustomerData } from '../customer-core/data/customer';
+import { Customer } from '../customer-core/data/customer';
+import {HEROES} from '../customer-core/mock/mock-hero';
+import {CustomerService} from '../customer-core/utils/customer.service';
 
 
 @Component({
@@ -11,14 +14,15 @@ import { CustomerData } from '../customer-core/data/customer';
 })
 export class CustomersComponent implements OnInit {
   public id: string;
-  costumers: CustomerData;
-  constructor(private activatedRoute: ActivatedRoute) {
-  }
 
+  heroes: Customer[];
+
+  getAllHeroes(): void {
+    this.heroes = this.costumerService.getAllHeroes();
+  }
+  constructor(private costumerService: CustomerService) {}
   ngOnInit() {
-    // console.log(this.activatedRoute);
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-   // console.log(this.id);
+    this.getAllHeroes();
   }
 
 }
