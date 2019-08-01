@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CustomerComponent } from './customer.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
-import {NbCardModule, NbListModule} from '@nebular/theme';
+import {NbActionsModule, NbCardModule, NbLayoutModule, NbListModule, NbUserModule} from '@nebular/theme';
 import {CommonModule} from '@angular/common';
 
 
@@ -14,6 +14,9 @@ import {CommonModule} from '@angular/common';
     RouterModule,
     NbListModule,
     CommonModule,
+    NbUserModule,
+    NbActionsModule,
+    NbLayoutModule,
   ],
 })
 export class CustomerModule { }

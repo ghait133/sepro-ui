@@ -5,29 +5,30 @@
   <div class="card-row">
 
     <div class="card-col">
-      <nb-card size="tiny">
+      <nb-card size="large">
         <nb-card-header>Kundenübersicht</nb-card-header>
         <nb-card-body>
 
-            <nb-card size="small">\n' +
-              '      <nb-list>\n' +
-                '        <nb-list-item *ngFor="let hero of heroes">\n' +
-                  '          {{hero.name}} +
-                  '        </nb-list-item>\n' +
-                '      </nb-list>\n' +
-              '    </nb-card>'
+            <nb-card size="large">
+                    <nb-list>
+                        <nb-list-item *ngFor="let hero of heroes">
+                          <nb-layout>
+                            <nb-layout-header>
+                              <nb-layout-column>
+                                <nb-action size="small" icon="person-outline">  </nb-action>
+                              </nb-layout-column>
+                              <nb-layout-column>
+                                <nb-user [name]="hero.title + ' ' + hero.name + ' ' + hero.lastname" [title]="hero.lastVisit" ></nb-user>
+                              </nb-layout-column>
+                            </nb-layout-header>
+
+                          </nb-layout>
+
+                          </nb-list-item>
+                      </nb-list>
+                  </nb-card>
 
         </nb-card-body>
-      </nb-card>
-
-
-      <nb-card size="tiny">
-        <nb-card-header>Tiny card</nb-card-header>
-      </nb-card>
-
-
-      <nb-card size="tiny">
-        <nb-card-header>Tiny card</nb-card-header>
       </nb-card>
     </div>
   </div>
