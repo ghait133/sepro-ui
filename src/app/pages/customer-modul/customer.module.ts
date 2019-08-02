@@ -3,12 +3,21 @@ import { RouterModule } from '@angular/router';
 import { CustomerComponent } from './customer.component';
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
-import {NbActionsModule, NbCardModule, NbLayoutModule, NbListModule, NbUserModule} from '@nebular/theme';
+import {
+  NbActionsModule, NbButtonModule,
+  NbCardModule, NbIconModule,
+  NbLayoutModule,
+  NbListModule,
+  NbTreeGridModule,
+  NbUserModule,
+  NbDialogModule,
+} from '@nebular/theme';
 import {CommonModule} from '@angular/common';
+import { InfoPopupComponent } from './customer-components/info-popup/info-popup.component';
 
 
 @NgModule({
-  declarations: [ CustomerComponent, CustomersComponent, CustomerDetailsComponent],
+  declarations: [ CustomerComponent, CustomersComponent, CustomerDetailsComponent, InfoPopupComponent],
   imports: [
     NbCardModule,
     RouterModule,
@@ -17,6 +26,13 @@ import {CommonModule} from '@angular/common';
     NbUserModule,
     NbActionsModule,
     NbLayoutModule,
+    NbTreeGridModule,
+    NbIconModule,
+    NbButtonModule,
+    NbDialogModule.forChild(),
+  ],
+  entryComponents: [
+    InfoPopupComponent,
   ],
 })
 export class CustomerModule { }

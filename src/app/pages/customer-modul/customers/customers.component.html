@@ -1,5 +1,4 @@
-
-
+<!--
 
 <nb-card accent="info">
   <div class="card-row">
@@ -9,27 +8,94 @@
         <nb-card-header>Kundenübersicht</nb-card-header>
         <nb-card-body>
 
-            <nb-card size="large">
-                    <nb-list>
-                        <nb-list-item *ngFor="let hero of heroes">
-                          <nb-layout>
-                            <nb-layout-header>
+          <nb-card size="large">
+            <nb-list>
+              <nb-list-item *ngFor="let hero of heroes">
 
-                                <nb-action size="small" icon="person-outline">  </nb-action>
-                              </nb-layout-column>
-                              <nb-layout-column>
-                                <nb-user [name]="hero.title + ' ' + hero.name + ' ' + hero.lastname" [title]="hero.lastVisit" ></nb-user>
-                              </nb-layout-column>
-                            </nb-layout-header>
+                <nb-layout>
 
-                          </nb-layout>
+                  <nb-layout-header>
+                    <nb-layout-column>
+                      <nb-action size="small" icon="person-outline">  </nb-action>
+                    </nb-layout-column>
+                    <nb-layout-column>
+                      <nb-user [name]="hero.title + ' ' + hero.name + ' ' + hero.lastname" [title]="hero.lastVisit" ></nb-user>
+                    </nb-layout-column>
+                  </nb-layout-header>
 
-                          </nb-list-item>
-                      </nb-list>
-                  </nb-card>
+                </nb-layout>
+
+              </nb-list-item>
+            </nb-list>
+          </nb-card>
 
         </nb-card-body>
       </nb-card>
     </div>
   </div>
 </nb-card>
+-->
+<div class="col-md-12 col-lg-12 col-xxxl-6">
+  <nb-card class="list-card" size="small">
+    <nb-card-header>Users</nb-card-header>
+    <nb-list>
+      <nb-list-item *ngFor="let user of heroes">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col-2 pr-1">
+                <nb-icon pack="eva" icon="person-outline"></nb-icon>
+              </div>
+              <div class="col font-weight-bold">
+                <span>Karim Rakia</span>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col">
+                <span><small class="text-muted">
+                  <span class="mr-2"><nb-icon pack="eva" icon="phone-outline" style="font-size: small"></nb-icon></span>
+                  <span>0172 6160243</span>
+                </small></span>
+              </div>
+            </div>
+
+            <div class="row">
+
+
+              <div class="col justify-content-end">
+                <span><small class="text-muted">
+                  <span class="mr-2"><nb-icon pack="eva" icon="email-outline" style="font-size: small"></nb-icon></span>
+                  <span>ghait61@gmail.com</span>
+                </small></span>
+              </div>
+            </div>
+
+          </div>
+          <div class="col container h-auto ">
+            <div class="row justify-content-center align-items-center h-100">
+              <div class="buttons-row">
+                <button nbButton size="tiny" shape="round" class="p-1" (click)="open()">
+                  <nb-icon pack="eva" icon="info-outline"></nb-icon>
+                </button>
+                <button nbButton size="tiny" shape="round" class="p-1" status="danger">
+                  <nb-icon pack="eva" icon="calendar-outline"></nb-icon>
+                </button>
+                <button nbButton size="tiny" shape="round" class="p-1" status="warning">
+
+                  <small><nb-icon pack="eva" icon="message-circle-outline"></nb-icon></small>
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <div class="col">col3</div>
+        </div>
+        <!--<nb-user [name]="user.name" [title]="user.title">
+        </nb-user>-->
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
+</div>
+
+
