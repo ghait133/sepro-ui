@@ -10,7 +10,7 @@ import {
   NbListModule,
   NbTreeGridModule,
   NbUserModule,
-  NbDialogModule,
+  NbDialogModule, NbAccordionModule,
 } from '@nebular/theme';
 import {CommonModule} from '@angular/common';
 import { InfoPopupComponent } from './customer-components/info-popup/info-popup.component';
@@ -34,6 +34,7 @@ import {
     NbIconModule,
     NbButtonModule,
     NbDialogModule.forChild(),
+    NbAccordionModule,
   ],
   entryComponents: [
     InfoPopupComponent,
