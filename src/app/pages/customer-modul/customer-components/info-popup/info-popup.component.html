@@ -20,164 +20,169 @@
     </div>
 
   </nb-card-header>
-<div class="col-12" id="space_info_popup"></div>
-  <div class="row">
-    <!-- NAME DES KUNDEN -->
-    <div class="col-4">
+  <nb-card-body>
 
-      <!-- ZEILE 1 -->
-      <div class="row">
+    <div class="col-12" id="space_info_popup"></div>
+    <div class="row">
+      <!-- NAME DES KUNDEN -->
+      <div class="col-4">
 
-        <div class="col-2 pr-2">
-          <nb-icon pack="eva" icon="person-outline"></nb-icon>
+        <!-- ZEILE 1 -->
+        <div class="row">
+
+          <div class="col-2 pr-2">
+            <nb-icon pack="eva" icon="person-outline"></nb-icon>
+          </div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Anrede:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="Anrede">Herr Dr.</small>
+          </div>
+
         </div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Anrede:</small>
+
+        <!-- ZEILE 2 -->
+        <div class="row">
+          <div class="col-2 pr-1"></div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Vorname:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="vorname">{{user.name}}</small>
+          </div>
         </div>
-        <div class="col-7 font-weight-bold">
-          <small class="Anrede">Herr Dr.</small>
+
+        <!-- ZEILE 3 -->
+        <div class="row">
+          <div class="col-2 pr-1"></div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Nachname:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="lastname">{{user.lastname}}</small>
+          </div>
+        </div>
+
+        <!-- ZEILE 4 -->
+        <div class="row">
+          <div class="col-2 pr-1"></div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Zusatz:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="zusatz"> Zusatz </small>
+          </div>
         </div>
 
       </div>
-
-      <!-- ZEILE 2 -->
-      <div class="row">
-        <div class="col-2 pr-1"></div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Vorname:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
-          <small class="vorname">{{user.name}}</small>
-        </div>
-      </div>
-
-      <!-- ZEILE 3 -->
-      <div class="row">
-        <div class="col-2 pr-1"></div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Nachname:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
-          <small class="lastname">{{user.lastname}}</small>
-        </div>
-      </div>
-
-      <!-- ZEILE 4 -->
-      <div class="row">
-        <div class="col-2 pr-1"></div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Zusatz:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
-          <small class="zusatz"> Zusatz </small>
-        </div>
-      </div>
-
-    </div>
 
       <!-- Adresse des Kunden-->
-    <div class="col-4">
+      <div class="col-4">
 
-      <!-- ZEILE 1 -->
-      <div class="row">
+        <!-- ZEILE 1 -->
+        <div class="row">
 
-        <div class="col-2 pr-1">
-          <nb-icon pack="eva" icon="home-outline"></nb-icon>
+          <div class="col-2 pr-1">
+            <nb-icon pack="eva" icon="home-outline"></nb-icon>
+          </div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Strasse:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="Anrede">Strasse 2</small>
+          </div>
         </div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Strasse:</small>
+
+        <!-- ZEILE 2 -->
+        <div class="row">
+
+          <div class="col-2 pr-1"></div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Ort:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="Anrede">Ort so und so</small>
+          </div>
+
         </div>
-        <div class="col-7 font-weight-bold">
-          <small class="Anrede">Strasse 2</small>
+
+        <!-- ZEILE 1 -->
+        <div class="row">
+
+          <div class="col-2 pr-1"></div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">PLZ:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="Anrede">04103</small>
+          </div>
+
         </div>
+
       </div>
 
-      <!-- ZEILE 2 -->
-      <div class="row">
+      <div class="col-4">
 
-        <div class="col-2 pr-1"></div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Ort:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
-          <small class="Anrede">Ort so und so</small>
-        </div>
-
-      </div>
-
-      <!-- ZEILE 1 -->
-      <div class="row">
-
-        <div class="col-2 pr-1"></div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">PLZ:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
-          <small class="Anrede">04103</small>
+        <!-- Geburtstag des Kunden !-->
+        <!-- ZEILE 1 -->
+        <div class="row">
+          <div class="col-2 pr-1">
+            <nb-icon pack="eva" icon="gift-outline"></nb-icon>
+          </div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Geburtstag:</small>
+          </div>
+          <div class="col-7 font-weight-bold ">
+            <small class="text-muted">05.04.2000</small>
+          </div>
         </div>
 
-      </div>
+        <!-- Kontakt des Kunden !-->
+        <!-- ZEILE 1 -->
+        <div class="row">
 
-    </div>
-
-    <div class="col-4">
-
-      <!-- Geburtstag des Kunden !-->
-      <!-- ZEILE 1 -->
-      <div class="row">
-        <div class="col-2 pr-1">
-          <nb-icon pack="eva" icon="gift-outline"></nb-icon>
-        </div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Geburtstag:</small>
-        </div>
-        <div class="col-7 font-weight-light ">
-          <small class="text-muted">05.04.2000</small>
-        </div>
-      </div>
-
-      <!-- Kontakt des Kunden !-->
-      <!-- ZEILE 1 -->
-      <div class="row">
-
-        <div class="col-2 pr-1">
-          <nb-icon pack="eva" icon="phone-call-outline"></nb-icon>
-        </div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Festnetz:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
+          <div class="col-2 pr-1">
+            <nb-icon pack="eva" icon="phone-call-outline"></nb-icon>
+          </div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Festnetz:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
             <small class="Anrede">0341/2127168</small>
+          </div>
+
+        </div>
+
+        <!-- ZEILE 2 -->
+        <div class="row">
+          <div class="col-2 pr-1"></div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">Handy:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="Anrede">0179/2127168</small>
+          </div>
+        </div>
+
+        <!-- ZEILE 3 -->
+        <div class="row">
+          <div class="col-2 pr-1">
+            <nb-icon pack="eva" icon="email-outline"></nb-icon>
+          </div>
+          <div class="col-3 font-weight-light ">
+            <small class="text-muted">E-Mail:</small>
+          </div>
+          <div class="col-7 font-weight-bold">
+            <small class="Anrede">hallo@gmail.com</small>
+          </div>
         </div>
 
       </div>
-
-      <!-- ZEILE 2 -->
-      <div class="row">
-        <div class="col-2 pr-1"></div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">Handy:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
-          <small class="Anrede">0179/2127168</small>
-        </div>
-      </div>
-
-      <!-- ZEILE 3 -->
-      <div class="row">
-        <div class="col-2 pr-1">
-          <nb-icon pack="eva" icon="email-outline"></nb-icon>
-        </div>
-        <div class="col-3 font-weight-light ">
-          <small class="text-muted">E-Mail:</small>
-        </div>
-        <div class="col-7 font-weight-bold">
-          <small class="Anrede">hallo@gmail.com</small>
-        </div>
-      </div>
-
     </div>
-  </div>
+
+  </nb-card-body>
+
 
  <!-- <nb-flip-card>
 
@@ -261,9 +266,6 @@
     </nb-card-back>
   </nb-flip-card>-->
 
-  <nb-card-footer>
-    <button nbButton hero status="primary" (click)="dismiss()">Schließen</button>
-  </nb-card-footer>
 
 
 
