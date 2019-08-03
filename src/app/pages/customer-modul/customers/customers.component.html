@@ -75,10 +75,10 @@
           <div class="col container h-auto ">
             <div class="row justify-content-center align-items-center h-100">
               <div class="buttons-row">
-                <button nbButton size="tiny" shape="round" class="p-1" (click)="open()">
+                <button nbButton size="tiny" shape="round" class="p-1" (click)="openInfoPopup(user)">
                   <nb-icon pack="eva" icon="info-outline"></nb-icon>
                 </button>
-                <button nbButton size="tiny" shape="round" class="p-1" status="danger">
+                <button nbButton size="tiny" shape="round" class="p-1" status="danger" (click)="openCustomerHistoryPopup()">
                   <nb-icon pack="eva" icon="calendar-outline"></nb-icon>
                 </button>
                 <button nbButton size="tiny" shape="round" class="p-1" status="warning">

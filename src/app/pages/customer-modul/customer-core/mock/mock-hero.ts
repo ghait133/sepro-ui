@@ -1,4 +1,4 @@
-import {Customer, CustomerData} from '../data/customer';
+import {Customer} from '../data/customer';
 
 export const HEROES: Customer[] =  [
   {

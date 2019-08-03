@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
+import {Customer} from '../../customer-core/data/customer';
 
 @Component({
   selector: 'ngx-info-popup',
@@ -13,9 +14,11 @@ export class InfoPopupComponent implements OnInit {
   }
   @Input() title: string;
 
+  @Input() user: Customer;
   constructor(protected ref: NbDialogRef<InfoPopupComponent>) {}
 
   dismiss() {
     this.ref.close();
   }
 }
+

@@ -1,18 +1,15 @@
-import { Component, OnInit, Input, TemplateRef  } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit} from '@angular/core';
 import {
   NbDialogService,
-  NbSortDirection,
-  NbSortRequest,
-  NbTreeGridDataSource,
-  NbTreeGridDataSourceBuilder,
 } from '@nebular/theme';
 
-import { CustomerData } from '../customer-core/data/customer';
 import { Customer } from '../customer-core/data/customer';
-import {HEROES} from '../customer-core/mock/mock-hero';
+
 import {CustomerService} from '../customer-core/utils/customer.service';
 import {InfoPopupComponent} from '../customer-components/info-popup/info-popup.component';
+import {
+  CostumerHistoryPopupComponent,
+} from '../customer-components/costumer-history-popup/costumer-history-popup.component';
 
 
 @Component({
@@ -21,9 +18,9 @@ import {InfoPopupComponent} from '../customer-components/info-popup/info-popup.c
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnInit {
+  /*
   public id: string;
 
-  heroes: Customer[];
 
   // TreeGrid-Implementierung
   customColumn = 'Name';
@@ -49,8 +46,9 @@ export class CustomersComponent implements OnInit {
     }
     return NbSortDirection.NONE;
   }
+*/
 
-
+  heroes: Customer[];
   getAllHeroes(): void {
     this.heroes = this.costumerService.getAllHeroes();
   }
@@ -59,10 +57,19 @@ export class CustomersComponent implements OnInit {
     this.getAllHeroes();
   }
 
-  open() {
+  openInfoPopup(user: Customer) {
     this.dialogService.open(InfoPopupComponent, {
       context: {
-        title: 'This is a title passed to the dialog component',
+        title: 'Informationen zu ' + user.title + user.name + user.lastname + ':',
+        user: user,
+      },
+    });
+  }
+
+  openCustomerHistoryPopup() {
+    this.dialogService.open(CostumerHistoryPopupComponent, {
+      context: {
+        title: 'This is CostumerHistoryPopupComponent',
       },
     });
   }

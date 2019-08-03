@@ -14,10 +14,14 @@ import {
 } from '@nebular/theme';
 import {CommonModule} from '@angular/common';
 import { InfoPopupComponent } from './customer-components/info-popup/info-popup.component';
+import {
+  CostumerHistoryPopupComponent,
+} from './customer-components/costumer-history-popup/costumer-history-popup.component';
 
 
 @NgModule({
-  declarations: [ CustomerComponent, CustomersComponent, CustomerDetailsComponent, InfoPopupComponent],
+  declarations: [ CustomerComponent, CustomersComponent, CustomerDetailsComponent, InfoPopupComponent,
+    CostumerHistoryPopupComponent],
   imports: [
     NbCardModule,
     RouterModule,
@@ -33,6 +37,7 @@ import { InfoPopupComponent } from './customer-components/info-popup/info-popup.
   ],
   entryComponents: [
     InfoPopupComponent,
+    CostumerHistoryPopupComponent,
   ],
 })
 export class CustomerModule { }
