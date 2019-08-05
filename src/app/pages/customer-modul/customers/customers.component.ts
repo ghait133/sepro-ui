@@ -10,6 +10,8 @@ import {InfoPopupComponent} from '../customer-components/info-popup/info-popup.c
 import {
   CostumerHistoryPopupComponent,
 } from '../customer-components/costumer-history-popup/costumer-history-popup.component';
+import {CostumerHistoryPopupData} from '../customer-core/data/costumer-history-popup-data';
+import { CustomerHistoryDataService } from '../customer-core/utils/customer-history-data.service';
 
 
 @Component({
@@ -52,9 +54,33 @@ export class CustomersComponent implements OnInit {
   getAllHeroes(): void {
     this.heroes = this.costumerService.getAllHeroes();
   }
-  constructor(private costumerService: CustomerService, private dialogService: NbDialogService) {}
+
+  custumerHistoryData: CostumerHistoryPopupData[];
+  getCostumerHistoryData(): CostumerHistoryPopupData[] {
+    this.custumerHistoryData = this.costumerHistoryService.getCostumerHistoryData();
+    return this.custumerHistoryData;
+  }
+
+  costumerID_HistoryData: CostumerHistoryPopupData[];
+  historyData: CostumerHistoryPopupData[];
+  historyListLength: number;
+  historyListIteration: number;
+  getCostumerID_HistoryData(user: Customer): CostumerHistoryPopupData[] {
+    this.historyData = this.getCostumerHistoryData();
+    this.historyListLength = this.historyData.length;
+    for (
+      this.historyListIteration = 0; this.historyListIteration < this.historyListLength; this.historyListIteration++ ) {
+      if (user.id === this.historyData[this.historyListIteration].customer_id) {
+        this.costumerID_HistoryData.push(this.historyData[this.historyListIteration]);
+      }
+       return this.costumerID_HistoryData;
+    }
+  }
+  constructor(private costumerService: CustomerService, private dialogService: NbDialogService,
+              private costumerHistoryService: CustomerHistoryDataService) {}
   ngOnInit() {
     this.getAllHeroes();
+    this.getCostumerHistoryData();
   }
 
   openInfoPopup(user: Customer) {
@@ -66,10 +92,13 @@ export class CustomersComponent implements OnInit {
     });
   }
 
-  openCustomerHistoryPopup() {
+  customerHistoryPopupData: Customer
+  openCustomerHistoryPopup(user: Customer, historyData: CostumerHistoryPopupData ) {
+   this.getCostumerID_HistoryData(user);
     this.dialogService.open(CostumerHistoryPopupComponent, {
       context: {
         title: 'This is CostumerHistoryPopupComponent',
+
       },
     });
   }
