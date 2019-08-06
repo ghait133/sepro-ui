@@ -1,8 +1,6 @@
 import {
   NbAuthResult,
   NbAuthService,
-
-  NbRegisterComponent
 } from '@nebular/auth';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
@@ -11,7 +9,7 @@ import {Observable} from 'rxjs';
 export class Register extends NbAuthService {
 
 register(strategyName: string, data?: any): Observable<NbAuthResult> {
-  console.log('register')
+  console.log('register');
   return undefined;
 }
 }

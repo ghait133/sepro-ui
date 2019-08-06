@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import {
   NbAuthModule,
   NbAuthOAuth2Token,
-  NbDummyAuthStrategy,
   NbOAuth2ClientAuthMethod,
   NbOAuth2GrantType,
 } from '@nebular/auth';
@@ -57,9 +56,9 @@ import { StatsProgressBarService } from './mock/stats-progress-bar.service';
 import { VisitorsAnalyticsService } from './mock/visitors-analytics.service';
 import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
-import {seProAuthStrategy} from './auth/seProAuthStrategy';
+import {SeProAuthStrategy} from './auth/seProAuthStrategy';
 
-const socialLinks = [
+/*const socialLinks = [
   {
     url: 'https://github.com/akveo/nebular',
     target: '_blank',
@@ -75,7 +74,7 @@ const socialLinks = [
     target: '_blank',
     icon: 'twitter',
   },
-];
+];*/
 
 const DATA_SERVICES = [
   { provide: UserData, useClass: UserService },
@@ -126,7 +125,7 @@ export const NB_CORE_PROVIDERS = [
           },
         },
       }),*/
-      seProAuthStrategy.setup({
+      SeProAuthStrategy.setup({
         name: 'sepro',
         clientId: 'USER_CLIENT_APP',
         clientSecret: 'password',
