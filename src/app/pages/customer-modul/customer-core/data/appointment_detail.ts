@@ -1,4 +1,3 @@
-import {Appointment} from './appointment';
 
 export interface AppointmentDetail {
   id: number;
