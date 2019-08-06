@@ -32,4 +32,4 @@ export const APPOINTMENTOLD: AppointmentOld[] = [
     stsrt: '08:00',
     end: '09:00',
   },
-]
+];
