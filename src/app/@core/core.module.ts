@@ -1,6 +1,12 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
+import {
+  NbAuthModule,
+  NbAuthOAuth2Token,
+  NbDummyAuthStrategy,
+  NbOAuth2ClientAuthMethod,
+  NbOAuth2GrantType,
+} from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
@@ -51,6 +57,7 @@ import { StatsProgressBarService } from './mock/stats-progress-bar.service';
 import { VisitorsAnalyticsService } from './mock/visitors-analytics.service';
 import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
+import {seProAuthStrategy} from './auth/seProAuthStrategy';
 
 const socialLinks = [
   {
@@ -105,17 +112,62 @@ export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
 
     strategies: [
-      NbDummyAuthStrategy.setup({
+      /*NbPasswordAuthStrategy.setup({
         name: 'email',
-        delay: 3000,
+
+        baseEndpoint: 'http://localhost:8073/',
+        register: {
+          alwaysFail:false,
+          endpoint: 'registration',
+          method: 'post',
+          requireValidToken: false,
+          redirect: {
+            success: 'home',
+          },
+        },
+      }),*/
+      seProAuthStrategy.setup({
+        name: 'sepro',
+        clientId: 'USER_CLIENT_APP',
+        clientSecret: 'password',
+        clientAuthMethod: NbOAuth2ClientAuthMethod.BASIC,
+        baseEndpoint: 'http://localhost:8072/oauth/',
+        redirect: {
+          success: 'home', // welcome page path
+          failure: null, // stay on the same page
+        },
+        token: {
+          endpoint: 'token',
+          grantType: NbOAuth2GrantType.PASSWORD,
+          class: NbAuthOAuth2Token,
+        },
+        refresh: {
+          endpoint: 'refresh-token',
+          grantType: NbOAuth2GrantType.REFRESH_TOKEN,
+        },
+        register: {
+          alwaysFail: false,
+          endpoint: 'register',
+          method: 'post',
+          requireValidToken: false,
+          redirect: {
+            success: '/home',
+            failure: null,
+          },
+          defaultErrors: ['Something went wrong, please try again.'],
+          defaultMessages: ['You have been successfully registered.'],
+        },
+        messages: {
+          key: 'message',
+        },
       }),
     ],
     forms: {
       login: {
-        socialLinks: socialLinks,
+        strategy: 'sepro',
       },
       register: {
-        socialLinks: socialLinks,
+        strategy: 'sepro',
       },
     },
   }).providers,

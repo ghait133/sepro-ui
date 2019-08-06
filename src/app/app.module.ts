@@ -20,6 +20,9 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import {seProAuthStrategyOptions} from './@core/auth/seProAuthStrategyOptions';
+import {seProAuthStrategy} from './@core/auth/seProAuthStrategy';
+import {AuthGuard} from './@core/auth/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,6 +45,7 @@ import {
     }),
     CoreModule.forRoot(),
   ],
+  providers: [AuthGuard, seProAuthStrategy, seProAuthStrategyOptions],
   bootstrap: [AppComponent],
 })
 export class AppModule {
