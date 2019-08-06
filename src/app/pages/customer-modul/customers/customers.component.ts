@@ -94,11 +94,10 @@ export class CustomersComponent implements OnInit {
 
   customerHistoryPopupData: CostumerHistoryPopupData[];
   openCustomerHistoryPopup(user: Customer ) {
-   this.customerHistoryPopupData = this.getCostumerID_HistoryData(user);
     this.dialogService.open(CostumerHistoryPopupComponent, {
       context: {
         title: 'This is CostumerHistoryPopupComponent',
-        costumerHistoryData: this.customerHistoryPopupData,
+        costumerHistoryData: user,
       },
     });
   }
