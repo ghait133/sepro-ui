@@ -1,0 +1,107 @@
+
+<nb-card class="costumer-history-popup-card">
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+
+    <!-- Spaltennamen -->
+    <div class="row">
+
+      <!-- Datum !-->
+      <div class="col-3" >
+
+        <div class="font-weight-bold">
+          <span>Datum</span>
+        </div>
+
+      </div>
+
+      <!-- Artikelnummer !-->
+      <div class="col-3" >
+
+        <div class="font-weight-bold">
+          <span>Artikelnummer</span>
+        </div>
+
+      </div>
+
+
+      <!-- Dienstleistung !-->
+      <div class="col-3" >
+
+        <div class="font-weight-bold">
+          <span>Dienstleistung</span>
+        </div>
+
+      </div>
+
+
+      <!-- Mitarbeiter !-->
+      <div class="col-3" >
+
+        <div class="font-weight-bold">
+          <span>Mitarbeiter</span>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <nb-list>
+      <nb-list-item *ngFor="let costumerHistoryData of costumerHistoryData">
+
+        <div class="row">
+
+          <!-- Datum !-->
+          <div class="col-3" >
+
+            <div class="font-weight-bold">
+              <span>Datum</span>
+            </div>
+
+          </div>
+
+          <!-- Artikelnummer !-->
+          <div class="col-3" >
+
+            <div class="font-weight-bold">
+              <span>Artikelnummer</span>
+            </div>
+
+          </div>
+
+
+          <!-- Dienstleistung !-->
+          <div class="col-3" >
+
+            <div class="font-weight-bold">
+              <span>Dienstleistung</span>
+            </div>
+
+          </div>
+
+
+          <!-- Mitarbeiter !-->
+          <div class="col-3" >
+
+            <div class="font-weight-bold">
+              <span>Mitarbeiter</span>
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+
+
+
+
+  <nb-card-footer>
+    <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button>
+  </nb-card-footer>
+</nb-card>
+
