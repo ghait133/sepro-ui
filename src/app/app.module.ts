@@ -20,7 +20,7 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import {seProAuthStrategyOptions} from './@core/auth/seProAuthStrategyOptions';
+import {seProAuthStrategyOptions} from './@core/auth/SeProAuthStrategyOptions';
 import {seProAuthStrategy} from './@core/auth/seProAuthStrategy';
 import {AuthGuard} from './@core/auth/auth-guard.service';
 

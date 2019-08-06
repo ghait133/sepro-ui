@@ -1,16 +1,18 @@
-import {NbAuthResult, NbAuthStrategyClass, NbOAuth2AuthStrategy, NbOAuth2AuthStrategyOptions} from "@nebular/auth";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, map} from "rxjs/operators";
-import {seProAuthStrategyOptions, seProAuthStrategyOptions1} from "./seProAuthStrategyOptions";
+import {NbAuthResult, NbAuthStrategyClass, NbOAuth2AuthStrategy} from '@nebular/auth';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpHeaders} from '@angular/common/http';
+import {catchError, map} from 'rxjs/operators';
+import {
+  SeProAuthStrategyOptions,
+  seProAuthStrategyOptions1} from './SeProAuthStrategyOptions';
 
 @Injectable()
-export class seProAuthStrategy extends NbOAuth2AuthStrategy{
-  protected defaultOptions: seProAuthStrategyOptions = seProAuthStrategyOptions1;
+export class SeProAuthStrategy extends NbOAuth2AuthStrategy {
+  protected defaultOptions: SeProAuthStrategyOptions = seProAuthStrategyOptions1;
 
-  static setup(options: seProAuthStrategyOptions): [NbAuthStrategyClass, seProAuthStrategyOptions]{
-    return [seProAuthStrategy, options];
+  static setup(options: SeProAuthStrategyOptions): [NbAuthStrategyClass, SeProAuthStrategyOptions] {
+    return [SeProAuthStrategy, options];
   }
 
   logout(): Observable<NbAuthResult> {
@@ -18,8 +20,8 @@ export class seProAuthStrategy extends NbOAuth2AuthStrategy{
   }
   register(data?: any): Observable<NbAuthResult> {
     const module = 'register';
-    let headers = new HttpHeaders();
-    headers.append('Content-Type','application/json');
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
     console.log(data.toString());
     return this.http.request('post', 'http://localhost:8074/registration', {body: data, observe: 'response'})
       .pipe(
@@ -32,7 +34,6 @@ export class seProAuthStrategy extends NbOAuth2AuthStrategy{
 
         }),
         map((res) => {
-          debugger;
           return new NbAuthResult(
             true,
             res,

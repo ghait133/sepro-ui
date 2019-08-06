@@ -1,16 +1,13 @@
 import {
-  NbAuthOAuth2Token,
-  NbAuthSimpleToken,
   NbOAuth2AuthStrategyOptions,
-  NbPasswordAuthStrategyOptions,
   NbPasswordStrategyMessage,
-  NbPasswordStrategyModule, NbPasswordStrategyToken
+  NbPasswordStrategyModule,
 } from '@nebular/auth';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {getDeepFromObject} from "./helper";
+import {getDeepFromObject} from './helper';
 
 
-export class seProAuthStrategyOptions extends NbOAuth2AuthStrategyOptions {
+export class SeProAuthStrategyOptions extends NbOAuth2AuthStrategyOptions {
 
   register?: boolean | NbPasswordStrategyModule = {
     alwaysFail: false,
@@ -28,7 +25,7 @@ export class seProAuthStrategyOptions extends NbOAuth2AuthStrategyOptions {
   errors?: NbPasswordStrategyMessage = {
     key: 'data.errors',
 
-    getter: (module: string, res: HttpErrorResponse, options: seProAuthStrategyOptions) => getDeepFromObject(
+    getter: (module: string, res: HttpErrorResponse, options: SeProAuthStrategyOptions) => getDeepFromObject(
       res.error,
       options.errors.key,
       options[module].defaultErrors,
@@ -38,11 +35,11 @@ export class seProAuthStrategyOptions extends NbOAuth2AuthStrategyOptions {
   messages?: NbPasswordStrategyMessage = {
     key: 'message',
 
-    getter: (module: string, res: HttpResponse<Object>, options: seProAuthStrategyOptions) => getDeepFromObject(
+    getter: (module: string, res: HttpResponse<Object>, options: SeProAuthStrategyOptions) => getDeepFromObject(
       res.body,
       options.messages.key,
       options[module].defaultMessages,
     ),
   };
 }
-export const seProAuthStrategyOptions1: seProAuthStrategyOptions = new seProAuthStrategyOptions();
+export const seProAuthStrategyOptions1: SeProAuthStrategyOptions = new SeProAuthStrategyOptions();
