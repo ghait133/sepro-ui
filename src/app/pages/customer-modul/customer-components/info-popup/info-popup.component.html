@@ -5,16 +5,13 @@
     <div class="row">
 
       <div class="col-11">
-        <nb-user [name]="user.name + ' ' + user.lastname"></nb-user>
+        <nb-user [name]="user.firstName + ' ' + user.lastName"></nb-user>
       </div>
 
-      <div class="col-1">
-
+      <div class="col-1" *ngIf="closeButton">
         <button nbButton size="tiny" shape="round" class="p-1" status="info" (click)="dismiss()">
           <nb-icon pack="eva" icon="close-outline"></nb-icon>
         </button>
-
-
       </div>
 
     </div>
@@ -37,7 +34,7 @@
             <small class="text-muted">Anrede:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="Anrede">Herr Dr.</small>
+            <small class="Anrede">{{user.gender}}</small>
           </div>
 
         </div>
@@ -49,7 +46,7 @@
             <small class="text-muted">Vorname:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="vorname">{{user.name}}</small>
+            <small class="vorname">{{user.firstName}}</small>
           </div>
         </div>
 
@@ -60,7 +57,7 @@
             <small class="text-muted">Nachname:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="lastname">{{user.lastname}}</small>
+            <small class="lastname">{{user.lastName}}</small>
           </div>
         </div>
 
@@ -90,7 +87,7 @@
             <small class="text-muted">Strasse:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="Anrede">Strasse 2</small>
+            <small class="Anrede">{{user.adresse.streetName}} {{user.adresse.houseNumbre}}</small>
           </div>
         </div>
 
@@ -102,7 +99,7 @@
             <small class="text-muted">Ort:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="Anrede">Ort so und so</small>
+            <small class="Anrede">{{user.adresse.cityName}}</small>
           </div>
 
         </div>
@@ -115,7 +112,7 @@
             <small class="text-muted">PLZ:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="Anrede">04103</small>
+            <small class="Anrede">{{user.adresse.postCode}}</small>
           </div>
 
         </div>
@@ -134,7 +131,7 @@
             <small class="text-muted">Geburtstag:</small>
           </div>
           <div class="col-7 font-weight-bold ">
-            <small class="text-muted">05.04.2000</small>
+            <small class="text-muted">{{user.birthdate}}</small>
           </div>
         </div>
 
@@ -149,7 +146,7 @@
             <small class="text-muted">Festnetz:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="Anrede">0341/2127168</small>
+            <small class="Anrede">{{user.telNumbre}}</small>
           </div>
 
         </div>
@@ -161,7 +158,7 @@
             <small class="text-muted">Handy:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="Anrede">0179/2127168</small>
+            <small class="Anrede">{{user.telNumbre}}</small>
           </div>
         </div>
 
@@ -174,7 +171,7 @@
             <small class="text-muted">E-Mail:</small>
           </div>
           <div class="col-7 font-weight-bold">
-            <small class="Anrede">hallo@gmail.com</small>
+            <small class="Anrede">{{user.email}}</small>
           </div>
         </div>
 

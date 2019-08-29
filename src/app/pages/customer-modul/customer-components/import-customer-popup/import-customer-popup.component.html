@@ -1,0 +1,73 @@
+  <nb-card class="import-card" >
+
+    <nb-card-header>
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col">
+          Kunden Importieren
+        </div>
+        <div class="col-2">
+          <button nbButton size="tiny" shape="round" class="p-1" status="info" (click)="dismiss()">
+            <nb-icon pack="eva" icon="close-outline"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </nb-card-header>
+
+    <nb-card-body>
+      <form (ngSubmit)="findCustomer()">
+        <div class="form-group row justify-content-center align-items-center h-100">
+          <div class="col-2 text-center">
+            <nb-icon pack="eva" icon="email-outline" class=""></nb-icon>
+          </div>
+          <div class="col-8">
+            <input type="email" name="email" [(ngModel)]="email" nbInput fullWidth id="inputEmail1" placeholder="Email">
+          </div>
+
+          <div class="col-2">
+            <button type="submit" nbButton status="primary">
+              <nb-icon pack="eva" icon="search-outline" class=""></nb-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="row justify-content-center align-items-center h-100" *ngIf="result">
+        <div class="col-2 text-center">
+          <nb-icon pack="eva" icon="person-outline"></nb-icon>
+        </div>
+        <div class="col-6" >
+          <div><span class="font-weight-bold">{{customer.firstName}} {{customer.lastName}}</span></div>
+          <div>
+                 <span><small class="text-muted">
+                  <span class="mr-2"><nb-icon pack="eva" icon="phone-outline" style="font-size: small"></nb-icon></span>
+                  <span>{{customer.telNumbre}}</span>
+                </small></span>
+          </div>
+          <div>
+                <span><small class="text-muted">
+                  <span class="mr-2"><nb-icon pack="eva" icon="email-outline" style="font-size: small"></nb-icon></span>
+                  <span>{{customer.email}}</span>
+                </small></span>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="buttons-row">
+            <button nbButton hero status="danger">
+              <nb-icon pack="eva" icon="close-outline" class="" (click)="cancel()"></nb-icon>
+            </button>
+            <button nbButton hero status="success">
+              <nb-icon pack="eva" icon="checkmark-outline" class="" (click)="addCustomer(customer)"></nb-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center h-100" *ngIf="error">
+        <nb-alert status="danger">Keinen passenden Kunden gefunden!</nb-alert>
+      </div>
+      <div class="row justify-content-center align-items-center h-100" *ngIf="add">
+        <nb-alert status="success">Neuer Kunde wurde hinzugefügt</nb-alert>
+      </div>
+      <div class="row justify-content-center align-items-center h-100" *ngIf="adderror">
+        <nb-alert status="danger">Kunde exestiert schon in Ihrer Liste</nb-alert>
+      </div>
+    </nb-card-body>
+  </nb-card>

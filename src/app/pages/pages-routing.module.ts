@@ -5,8 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import {CustomerDetailsComponent} from './customer-modul/customer-details/customer-details.component';
-import {CustomersComponent} from './customer-modul/customers/customers.component';
+import {AppointmentsComponent} from './appointment-modul/appointments/appointments.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,14 +13,20 @@ const routes: Routes = [{
   children: [
     {
       path: 'kunden',
+      loadChildren: () => import('./customer-modul/customer.module')
+        .then(m => m.CustomerModule),
+    },
+    {
+      path: 'employees',
+      loadChildren: () => import('./employee-modul/employee.module')
+        .then(m => m.EmployeeModule),
+    },
+    {
+      path: 'appointments',
       children: [
         {
           path: '',
-          component: CustomersComponent,
-        },
-        {
-          path: 'kunden/:id',
-          component: CustomerDetailsComponent,
+          component: AppointmentsComponent,
         },
       ],
     },

@@ -1,98 +1,122 @@
 import { Component, OnInit} from '@angular/core';
 import {
-  NbDialogService,
+  NbDialogService, NbTreeGridDataSource, NbTreeGridDataSourceBuilder,
 } from '@nebular/theme';
 
-import { Customer } from '../customer-core/data/customer';
 
 import {CustomerService} from '../customer-core/utils/customer.service';
 import {InfoPopupComponent} from '../customer-components/info-popup/info-popup.component';
 import {
   CostumerHistoryPopupComponent,
 } from '../customer-components/costumer-history-popup/costumer-history-popup.component';
-import {CostumerHistoryPopupData} from '../customer-core/data/costumer-history-popup-data';
-import { CustomerHistoryDataService } from '../customer-core/utils/customer-history-data.service';
+import {Customer} from '../customer-core/data/Customer.model';
+import {
+  AddCostumerComponentPopupComponent,
+} from '../customer-components/add-new-costumer-popup/add-costumer-component-popup.component';
+import {
+  ImportCustomerPopupComponent,
+} from '../customer-components/import-customer-popup/import-customer-popup.component';
 
+interface TreeNode<T> {
+  data: T;
+  children?: TreeNode<T>[];
+  expanded?: boolean;
+}
 
+interface FSEntry {
+  email: string;
+  name: string;
+  plz: string;
+  telnumber: string;
+  data?: Data;
+  info?: Infos;
+  actions?: any;
+}
+
+interface Data {
+  name: string;
+  email: string;
+  phone: string;
+}
+interface Infos {
+  customer: Customer;
+}
 @Component({
   selector: 'ngx-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss'],
 })
 export class CustomersComponent implements OnInit {
-  /*
-  public id: string;
 
 
-  // TreeGrid-Implementierung
-  customColumn = 'Name';
-  defaultColumns = [ 'Telefonnummer', 'letzter Besuch', 'Terminbuchung' ];
-  allColumns = [ this.customColumn, ...this.defaultColumns ];
+  defaultColumns = ['data', 'info', 'action'];
+  dataColumn = 'data';
+  infoColumn = 'info';
+  actionColumn = 'action';
+  dataSource: NbTreeGridDataSource<FSEntry>;
+  constructor(private customerService: CustomerService,
+              private dialogService: NbDialogService,
+              private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) {}
 
-  sortColumn: string;
-  sortDirection: NbSortDirection = NbSortDirection.NONE;
-  updateSort(sortRequest: NbSortRequest): void {
-    this.sortColumn = sortRequest.column;
-    this.sortDirection = sortRequest.direction;
+  private data: TreeNode<FSEntry>[];
+  getcustomers() {
+    const datac: TreeNode<FSEntry>[] = new Array();
+    this.customerService.getcustomers()
+      .subscribe(
+        result => {
+          const customers: Customer[] = result['customers'];
+          // console.log(customers);
+          customers.forEach(function (customer) {
+            console.log(customer);
+            const data: Data = {
+              name: customer.firstName + ' ' + customer.lastName,
+              email: customer.email,
+              phone: customer.telNumbre,
+            };
+            const info: Infos = {
+              customer: customer,
+            };
+            const entry: TreeNode<FSEntry> = {
+              data: {
+                email: data.email,
+                name: data.name,
+                plz: info.customer.adresse.postCode,
+                telnumber: data.phone,
+                data: data,
+                info: info,
+                actions: customer.id,
+              },
+            };
+            datac.push(entry);
+          });
+          this.data = datac;
+          this.dataSource = this.dataSourceBuilder.create(this.data);
+        },
+      );
   }
 
-  getShowOn(index: number) {
-    const minWithForMultipleColumns = 400;
-    const nextColumnStep = 100;
-    return minWithForMultipleColumns + (nextColumnStep * index);
-  }
-
-  getSortDirection(column: string): NbSortDirection {
-    if (this.sortColumn === column) {
-      return this.sortDirection;
-    }
-    return NbSortDirection.NONE;
-  }
-*/
-
-  heroes: Customer[];
-  getAllHeroes(): void {
-    this.heroes = this.costumerService.getAllHeroes();
-  }
-
-  custumerHistoryData: CostumerHistoryPopupData[];
-  getCostumerHistoryData(): CostumerHistoryPopupData[] {
-    this.custumerHistoryData = this.costumerHistoryService.getCostumerHistoryData();
-    return this.custumerHistoryData;
-  }
-
-  costumerID_HistoryData: CostumerHistoryPopupData[];
-  historyData: CostumerHistoryPopupData[];
-  historyListLength: number;
-  historyListIteration: number;
-  getCostumerID_HistoryData(user: Customer): CostumerHistoryPopupData[] {
-    this.historyData = this.getCostumerHistoryData();
-    this.historyListLength = this.historyData.length;
-    for (
-      this.historyListIteration = 0; this.historyListIteration < this.historyListLength; this.historyListIteration++ ) {
-      if (user.id === this.historyData[this.historyListIteration].customer_id) {
-        this.costumerID_HistoryData.push(this.historyData[this.historyListIteration]);
-      }
-       return this.costumerID_HistoryData;
-    }
-  }
-  constructor(private costumerService: CustomerService, private dialogService: NbDialogService,
-              private costumerHistoryService: CustomerHistoryDataService) {}
   ngOnInit() {
-    this.getAllHeroes();
-    this.getCostumerHistoryData();
+    this.getcustomers();
   }
 
   openInfoPopup(user: Customer) {
     this.dialogService.open(InfoPopupComponent, {
       context: {
-        title: 'Informationen zu ' + user.title + user.name + user.lastname + ':',
+        title: 'Informationen zu ' + user.gender + user.firstName + user.lastName + ':',
         user: user,
       },
     });
   }
 
-
+  openAddCostumerComponent() {
+    this.dialogService.open(AddCostumerComponentPopupComponent, {
+      context: {
+      },
+    });
+  }
+  openImportCustomer() {
+    this.dialogService.open(ImportCustomerPopupComponent);
+  }
   openCustomerHistoryPopup(user: Customer ) {
     this.dialogService.open(CostumerHistoryPopupComponent, {
       context: {

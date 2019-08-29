@@ -1,0 +1,9 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+  .form-card {
+    max-width: 900px;
+    min-width: 900px;
+  }
+}

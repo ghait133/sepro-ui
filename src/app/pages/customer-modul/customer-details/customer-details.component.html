@@ -1,34 +1,489 @@
-
-
 <nb-card>
+  <nb-card-header>
+    Detailansicht des Kunden Hans Mustermann
+  </nb-card-header>
+
   <nb-card-body>
 
-    <label class="search-label" for="search">Search:</label>
-    <input nbInput [nbFilterInput]="heroes" id="search" class="search-input">
+    <nb-card>
+      <nb-card-header>
+        Stammdaten
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row justify-content-around">
+          <div class="col-5 border m-2 rounded">
+            <!--Header-->
+            <div class="p-3 border-bottom row justify-content-center align-items-center">
+              <div class="col">
+                <nb-icon pack="eva" icon="person-outline" class="mr-2"></nb-icon> Name und Kontaktdaten
+              </div>
+              <div class="col text-right">
+                <button nbButton hero size="tiny" status="primary" shape="round" class="my-0" [disabled]="editStammdaten" (click)="editStammdaten=true">
+                  <nb-icon pack="eva" icon="edit-2-outline" class="mr-2"></nb-icon>bearbeiten
+                </button>
+              </div>
+            </div>
+            <!--body-->
+            <div class="p-3">
+              <form #stammdatenForm name="stammdatenForm" (ngSubmit)="setstammdaten(stammdatenForm)" *ngIf="customer">
+                <div class=" row">
+                  <label for="gender" class="label col-sm-3 col-form-label">Anrede</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editStammdaten?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.gender" name="gender" id="gender" value="{{customer.gender}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="firstName" class="label col-sm-3 col-form-label">Vorname</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editStammdaten?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.firstName" name="firstName" id="firstName" value="{{customer.firstName}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="lastName" class="label col-sm-3 col-form-label">Nachname</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editStammdaten?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.lastName" name="lastName" id="lastName" value="{{customer.lastName}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="birthdate" class="label col-sm-3 col-form-label">Geburtstag</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editStammdaten?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.birthdate" name="birthdate" id="birthdate" value="{{customer.birthdate}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="telNumbre" class="label col-sm-3 col-form-label">Tel. Nummer</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editStammdaten?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.telNumbre" name="telNumbre" id="telNumbre" value="{{customer.telNumbre}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="email" class="label col-sm-3 col-form-label">Email</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editStammdaten?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.email" name="email" fullWidth id="email" value="{{customer.email}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <div class="offset-sm-3 col-sm-9 text-right">
+                    <div class="button-row" *ngIf="editStammdaten">
+                      <button type="button" nbButton size="tiny" hero status="danger" (click)="updateStammdatenForm(stammdatenForm)">abbrechen</button>
+                      <button type="submit" nbButton size="tiny" hero status="success">abschicken</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-5 border m-2  rounded">
+            <!--Header-->
+            <div class="p-3 border-bottom row justify-content-center align-items-center">
+              <div class="col">
+                <nb-icon pack="eva" icon="home-outline" class="mr-2"></nb-icon> Anschrift
+              </div>
+              <div class="col text-right">
+                <button nbButton hero size="tiny" class="my-0" status="primary" shape="round" [disabled]="editAnschrift" (click)="editAnschrift=true">
+                  <nb-icon pack="eva" icon="edit-2-outline" class="mr-2"></nb-icon>bearbeiten
+                </button>
+              </div>
+            </div>
+            <div class="p-3">
+              <form #anschriftForm (ngSubmit)="setAnschrift(anschriftForm)">
+                <div class=" row">
+                  <label for="streetName" class="label col-sm-3 col-form-label">Strasse</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editAnschrift?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.adresse.streetName" name="streetName" id="streetName" value="{{customer.adresse.streetName}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="houseNumbre" class="label col-sm-3 col-form-label">Strassennummer</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editAnschrift?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.adresse.houseNumbre" name="houseNumbre" id="houseNumbre" value="{{customer.adresse.houseNumbre}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="postCode" class="label col-sm-3 col-form-label">Postleitzahl</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editAnschrift?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.adresse.postCode" name="postCode" id="postCode" value="{{customer.adresse.postCode}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="cityName" class="label col-sm-3 col-form-label">Ort</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editAnschrift?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.adresse.cityName" name="cityName" id="cityName" value="{{customer.adresse.cityName}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <label for="countryName" class="label col-sm-3 col-form-label">Land</label>
+                  <div class="col-sm-9">
+                    <input type="email" [attr.disabled]="!editAnschrift?'':null" class="my-disabled" shape="round" fieldSize="tiny" nbInput [(ngModel)]="customer.adresse.countryName" name="countryName" id="countryName" value="{{customer.adresse.countryName}}">
+                  </div>
+                </div>
+                <div class=" row">
+                  <div class="offset-sm-3 col-sm-9 text-right">
+                    <div class="button-row" *ngIf="editAnschrift">
+                      <button type="button" nbButton size="tiny" hero status="danger" (click)="updateAnschriftForm(anschriftForm)">abbrechen</button>
+                      <button type="submit" nbButton size="tiny" hero status="success">abschicken</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        Servicekarte
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row justify-content-around">
+          <div class="col-12 border m-2  rounded">
+            <!--Header-->
+            <div class="p-3 border-bottom row justify-content-center align-items-center">
+              <div class="col">
+                <nb-icon pack="eva" icon="home-outline" class="mr-2"></nb-icon> Kopf und Hautzustand
+              </div>
+              <div class="col text-right">
+                <button nbButton hero size="tiny" status="primary" shape="round" class="m-0">
+                  <nb-icon pack="eva" icon="edit-2-outline" class="mr-2"></nb-icon>bearbeiten
+                </button>
+              </div>
+            </div>
+            <ngx-globale-info-smarttable [customerId]="customerId"></ngx-globale-info-smarttable>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div class="col-12 border m-2  rounded">
+            <!--Header-->
+            <div class="p-3 border-bottom row justify-content-center align-items-center">
+              <div class="col">
+                <nb-icon pack="eva" icon="home-outline" class="mr-2"></nb-icon> Behandlungstabellen
+              </div>
+              <!--<div class="col text-right">
+                <button nbButton hero size="tiny" status="primary" shape="round" class="m-0" >
+                  <nb-icon pack="eva" icon="edit-2-outline" class="mr-2"></nb-icon>bearbeiten
+                </button>
+              </div>-->
+            </div>
 
-    <table [nbTreeGrid]="heroes" [nbSort]="heroes" (sort)="updateSort($event)">
+            <!--Haarfärben-tabelle-->
+            <div class="row justify-content-between justify-content-center align-items-center pt-2" *ngIf="farbVeraenderung.length !== 0">
+              <div class="col">
+                <h6 class="">Coloration Informationen</h6>
+              </div>
+              <div class="col-2" >
+                <label for="farbveraenderungtable" class="label"><nb-icon pack="eva" icon="funnel-outline" class="mr-2"></nb-icon>Filter</label>
+                <nb-select placeholder="filter" multiple hero status="primary" fullWidth shape="semi-round" size="small" class="text-center" id="farbveraenderungtable" [(ngModel)]="farbVeraenderungColumns" [(selected)]="farbVeraenderungColumns">
+                  <nb-option *ngFor="let column of defaultFarbVeraenderungColumns" value="{{column}}">{{column}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <nb-card class="shadow-none " *ngIf="farbVeraenderung.length !== 0">
+              <nb-card-body class="px-0">
+                <ngx-dauerwelle-smart-table  [data]="farbVeraenderung" [columns]="farbVeraenderungColumns" ></ngx-dauerwelle-smart-table>
+              </nb-card-body>
+            </nb-card>
 
-      <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
-      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+            <!--dauerwelle-tabelle-->
+            <div class="row justify-content-between justify-content-center align-items-center pt-2" *ngIf="dauerwelleBehandlung.length !== 0">
+              <div class="col">
+                <h6 class="">Dauerwell-Rezeptur</h6>
+              </div>
+              <div class="col-2" >
+                <label for="dauerwellebehandlung" class="label"><nb-icon pack="eva" icon="funnel-outline" class="mr-2"></nb-icon>Filter</label>
+                <nb-select placeholder="filter" multiple hero status="primary" fullWidth shape="semi-round" size="small" class="text-center" id="dauerwellebehandlung" [(ngModel)]="dauerwelleBehandlungColumns" [(selected)]="dauerwelleBehandlungColumns">
+                  <nb-option *ngFor="let column of defaultdauerwelleBehandlungColumns" value="{{column}}">{{column}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <nb-card class="shadow-none " *ngIf="dauerwelleBehandlung.length !== 0">
+              <nb-card-body class="px-0">
+                <ngx-dauerwelle-smart-table  [data]="dauerwelleBehandlung" [columns]="dauerwelleBehandlungColumns" ></ngx-dauerwelle-smart-table>
+              </nb-card-body>
+            </nb-card>
 
-      <ng-container [nbTreeGridColumnDef]="customColumn">
-        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
-          {{customColumn}}
-        </th>
+            <!--Haarpflege-tabelle-->
+            <div class="row justify-content-between justify-content-center align-items-center pt-2" *ngIf="haarpflegeBehandlung.length !== 0">
+              <div class="col">
+                <h6 class="">Haarpflege Infomationen</h6>
+              </div>
+              <div class="col-2" >
+                <label for="haarpflegeBehandlung" class="label"><nb-icon pack="eva" icon="funnel-outline" class="mr-2"></nb-icon>Filter</label>
+                <nb-select placeholder="filter" multiple hero status="primary" fullWidth shape="semi-round" size="small" class="text-center" id="haarpflegeBehandlung" [(ngModel)]="haarpflegeBehandlungColumns" [(selected)]="haarpflegeBehandlungColumns">
+                  <nb-option *ngFor="let column of defaulthaarpflegeBehandlungColumns" value="{{column}}">{{column}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <nb-card class="shadow-none " *ngIf="haarpflegeBehandlung.length !== 0">
+              <nb-card-body class="px-0">
+                <ngx-dauerwelle-smart-table  [data]="haarpflegeBehandlung" [columns]="haarpflegeBehandlungColumns" ></ngx-dauerwelle-smart-table>
+              </nb-card-body>
+            </nb-card>
+            <!--Kosmetik-tabelle-->
+            <div class="row justify-content-between justify-content-center align-items-center pt-2" *ngIf="kosmetikBehandlung.length !== 0">
+              <div class="col">
+                <h6 class="">Kosmetik Infomationen</h6>
+              </div>
+              <div class="col-2" >
+                <label for="kosmetikBehandlung" class="label"><nb-icon pack="eva" icon="funnel-outline" class="mr-2"></nb-icon>Filter</label>
+                <nb-select placeholder="filter" multiple hero status="primary" fullWidth shape="semi-round" size="small" class="text-center" id="kosmetikBehandlung" [(ngModel)]="kosmetikBehandlungColumns" [(selected)]="kosmetikBehandlungColumns">
+                  <nb-option *ngFor="let column of defaultkosmetikBehandlungColumns" value="{{column}}">{{column}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <nb-card class="shadow-none " *ngIf="kosmetikBehandlung.length !== 0">
+              <nb-card-body class="px-0">
+                <ngx-dauerwelle-smart-table  [data]="kosmetikBehandlung" [columns]="kosmetikBehandlungColumns" ></ngx-dauerwelle-smart-table>
+              </nb-card-body>
+            </nb-card>
 
-      </ng-container>
+            <!--verkauf-tabelle-->
+            <div class="row justify-content-between justify-content-center align-items-center pt-2" *ngIf="verkauf.length !== 0">
+              <div class="col">
+                <h6 class="">Verkauf Infomationen</h6>
+              </div>
+              <div class="col-2" >
+                <label for="kosmetikBehandlung" class="label"><nb-icon pack="eva" icon="funnel-outline" class="mr-2"></nb-icon>Filter</label>
+                <nb-select placeholder="filter" multiple hero status="primary" fullWidth shape="semi-round" size="small" class="text-center" id="verkauf" [(ngModel)]="verkaufColumns" [(selected)]="verkaufColumns">
+                  <nb-option *ngFor="let column of defaultverkaufColumns" value="{{column}}">{{column}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <nb-card class="shadow-none " *ngIf="verkauf.length !== 0">
+              <nb-card-body class="px-0">
+                <ngx-dauerwelle-smart-table  [data]="verkauf" [columns]="verkaufColumns" ></ngx-dauerwelle-smart-table>
+              </nb-card-body>
+            </nb-card>
 
-      <ng-container *ngFor="let column of defaultColumns; let index = index"
-                    [nbTreeGridColumnDef]="column"
-                    [showOn]="getShowOn(index)">
-        <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
-          {{column}}
-        </th>
-        <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
-      </ng-container>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <nb-accordion>
 
-    </table>
+
+
+      <nb-accordion-item>
+        <nb-accordion-item-header class="card-header-detail">
+          <div class="text-muted" id="detail-customercard-header">Servicekarte des Kunden</div>
+        </nb-accordion-item-header>
+
+        <nb-accordion-item-body class="pt-0">
+
+          <nb-card-body>
+
+            <nb-card class="shadow-none d-flex justify-content-center"  id="detail-customercard-space">
+
+              <nb-card-header class="pt-0">
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4  d-flex justify-content-center">
+                    <div class="row">
+                      <i class="fas fa-bacon"></i>
+                      <div class="col-1"></div>
+                      <div class="text-muted">Die Haarstruktur des Kunden</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2"></div>
+                  <nb-icon class="col" pack="eva" icon="edit-2-outline"></nb-icon>
+                </div>
+              </nb-card-header>
+
+              <nb-card-body>
+                <div class="row" class="d-flex justify-content-center" id="hairstructur-detail-customer">
+                  <div class="col-4"></div>
+                  <div class="col font-weight-light d-flex justify-content-center ">
+                    FEIN
+                  </div>
+                  <div class="col-4"></div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+
+
+            <nb-card class="shadow-none d-flex justify-content-center"  id="detail-customer-hairlength-space">
+
+              <nb-card-header>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4  d-flex justify-content-center">
+                    <div class="row">
+                      <i class="fas fa-ruler-vertical"></i>
+                      <div class="col-1"></div>
+                      <div class="text-muted">Die Haarlänge des Kunden</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2"></div>
+                  <nb-icon class="col" pack="eva" icon="edit-2-outline"></nb-icon>
+                </div>
+              </nb-card-header>
+
+              <nb-card-body>
+                <div class="row" class="d-flex justify-content-center" id="detail-customer-hairlength">
+                  <div class="col-4"></div>
+                  <div class="col font-weight-light d-flex justify-content-center "> KINNLANG </div>
+                  <div class="col-4"></div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+
+
+            <nb-card class="shadow-none d-flex justify-content-center"  id="detail-customer-haarzustand-space">
+
+              <nb-card-header>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4  d-flex justify-content-center">
+                    <div class="row">
+                      <i class="fas fa-burn"></i>
+                      <div class="col-1"></div>
+                      <div class="text-muted">Der Haarzustand des Kunden</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2"></div>
+                  <nb-icon class="col" pack="eva" icon="edit-2-outline"></nb-icon>
+                </div>
+              </nb-card-header>
+
+              <nb-card-body>
+                <div class="row" class="d-flex justify-content-center" id="detail-customer-haarzustand">
+                  <div class="col-4"></div>
+                  <div class="col font-weight-light d-flex justify-content-center ">DAUERGEWELLT</div>
+                  <div class="col-4"></div>
+                </div>
+
+              </nb-card-body>
+            </nb-card>
+
+            <nb-card class="shadow-none d-flex justify-content-center"  id="detail-customer-kopfhautanalyse-space">
+
+              <nb-card-header>
+                <div class="row">
+                  <div class="col-4"></div>
+                  <div class="col-4  d-flex justify-content-center">
+                    <div class="row">
+                      <i class="fas fa-heartbeat"></i>
+                      <div class="col-1"></div>
+                      <div class="text-muted">Analyse der Kopfhaut des Kunden</div>
+                    </div>
+                  </div>
+
+                  <div class="col-2"></div>
+                  <nb-icon class="col" pack="eva" icon="edit-2-outline"></nb-icon>
+                </div>
+              </nb-card-header>
+
+              <nb-card-body>
+                <div class="row" class="d-flex justify-content-center" id="detail-customer-kopfhautanalyse-">
+                  <div class="col-4"></div>
+                  <div class="col font-weight-light d-flex justify-content-center ">TROCKEN</div>
+                  <div class="col-4"></div>
+                </div>
+
+              </nb-card-body>
+            </nb-card>
+
+          </nb-card-body>
+        </nb-accordion-item-body>
+
+      </nb-accordion-item>
+
+
+      <nb-accordion-item>
+        <nb-accordion-item-header class="card-history-detail">
+          <div class="text-muted" id="card-history-detail-header">Historie des Kunden</div>
+        </nb-accordion-item-header>
+
+        <nb-accordion-item-body class="pt-0">
+
+          <nb-card class="shadow-none d-flex justify-content-center"  id="card-history-detail-space">
+            <nb-card-header>
+              <div class="row pb-4">
+                <div class="col-8"></div>
+                <div class="col-2">Neuer Eintrag</div>
+                <nb-icon class="col justify-content-lg-start" pack="eva" icon="plus-outline"></nb-icon>
+
+
+              </div>
+              <div class="row">
+
+                <div class="col text-muted d-flex justify-content-center">Datum</div>
+                <div class="col text-muted d-flex justify-content-center">Schnitt</div>
+                <div class="col text-muted d-flex justify-content-center">Behandlung</div>
+                <div class="col text-muted d-flex justify-content-center">Zusatz</div>
+                <div class="col text-muted d-flex justify-content-center">Empfehlung</div>
+                <div class="col text-muted d-flex justify-content-center">Friseur/in</div>
+                <div class="col text-muted d-flex justify-content-center">Preis</div>
+
+              </div>
+            </nb-card-header>
+
+            <nb-card-body>
+
+              <div class="row  pb-3">
+                <div class="col  d-flex justify-content-center text-center">05.04.2019</div>
+                <div class="col  d-flex justify-content-center text-center">Kurzhaarschnitt</div>
+                <div class="col  d-flex justify-content-center text-center">classic</div>
+                <div class="col  d-flex justify-content-center text-center">Haarfärbung: grün</div>
+                <div class="col  d-flex justify-content-center text-center">Vorsicht bissig</div>
+                <div class="col  d-flex justify-content-center text-center">Frau Müller</div>
+                <div class="col  d-flex justify-content-center text-center">99 Eur</div>
+              </div>
+
+              <div class="row pb-3">
+                <div class="col  d-flex justify-content-center text-center">05.04.2019</div>
+                <div class="col  d-flex justify-content-center text-center">Kurzhaarschnitt</div>
+                <div class="col  d-flex justify-content-center text-center">classic</div>
+                <div class="col  d-flex justify-content-center text-center">Haarfärbung: grün</div>
+                <div class="col  d-flex justify-content-center text-center">Vorsicht bissig</div>
+                <div class="col  d-flex justify-content-center text-center">Frau Müller</div>
+                <div class="col  d-flex justify-content-center text-center">99 Eur</div>
+              </div>
+
+              <div class="row pb-3">
+                <div class="col  d-flex justify-content-center text-center">05.04.2019</div>
+                <div class="col  d-flex justify-content-center text-center">Kurzhaarschnitt</div>
+                <div class="col  d-flex justify-content-center text-center">classic</div>
+                <div class="col  d-flex justify-content-center text-center">Haarfärbung: grün</div>
+                <div class="col d-flex justify-content-center text-center">Vorsicht bissig</div>
+                <div class="col d-flex justify-content-center text-center">Frau Müller</div>
+                <div class="col d-flex justify-content-center text-center">99 Eur</div>
+              </div>
+
+              <div class="row pb-3">
+                <div class="col  d-flex justify-content-center text-center">05.04.2019</div>
+                <div class="col  d-flex justify-content-center text-center">Kurzhaarschnitt</div>
+                <div class="col  d-flex justify-content-center text-center">classic</div>
+                <div class="col  d-flex justify-content-center text-center">Haarfärbung: grün</div>
+                <div class="col  d-flex justify-content-center text-center">Vorsicht bissig</div>
+                <div class="col  d-flex justify-content-center text-center">Frau Müller</div>
+                <div class="col d-flex justify-content-center text-center">99 Eur</div>
+              </div>
+
+              <div class="row pb-3">
+                <div class="col  d-flex justify-content-center text-center ">05.04.2019</div>
+                <div class="col  d-flex justify-content-center text-center ">Kurzhaarschnitt</div>
+                <div class="col  d-flex justify-content-center text-center ">classic</div>
+                <div class="col  d-flex justify-content-center text-center ">Haarfärbung: grün</div>
+                <div class="col  d-flex justify-content-center text-center ">Vorsicht bissig</div>
+                <div class="col  d-flex justify-content-center text-center ">Frau Müller</div>
+                <div class="col d-flex justify-content-center text-center ">99 Eur</div>
+              </div>
+
+            </nb-card-body>
+
+          </nb-card>
+        </nb-accordion-item-body>
+
+      </nb-accordion-item>
+
+    </nb-accordion>
 
   </nb-card-body>
+
 </nb-card>
+
 

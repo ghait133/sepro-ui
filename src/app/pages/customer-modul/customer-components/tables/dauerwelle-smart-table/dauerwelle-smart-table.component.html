@@ -1,0 +1,46 @@
+
+  <!--<div class="row">
+    <div class="col">
+      <div class="row">datum</div>
+      <div class="row">datum</div>
+      <div class="row">datum</div>
+      <div class="row">datum</div>
+    </div>
+    <div class="col">vorbehandlung</div>
+    <div class="col">produkt</div>
+    <div class="col">EKZ/min</div>
+    <div class="col">nachbehandlung</div>
+    <div class="col">preis</div>
+  </div>-->
+  <div>
+    hallo
+    <table class="w-100 border">
+      <thead class="border">
+      <tr>
+        <th class="border p-3 text-center">Aktion</th>
+        <th *ngFor="let column of columns" class="border p-3 text-center">{{column}}</th>
+
+      </tr>
+      </thead>
+      <tbody class="border">
+      <tr *ngFor="let element of data" >
+        <td class="border p-2 text-center">
+          <div class="buttons-row">
+            <button nbButton size="tiny" status="primary" shape="round" class="p-1" [disabled]="edit[data.indexOf(element)]" *ngIf="!edit[data.indexOf(element)]" (click)="edit[data.indexOf(element)]=true">
+              <nb-icon pack="eva" icon="edit-2-outline"></nb-icon>
+            </button>
+            <button nbButton size="tiny" shape="round" class="p-1 mr-2" status="success" *ngIf="edit[data.indexOf(element)]">
+              <nb-icon pack="eva" icon="checkmark-outline"></nb-icon>
+            </button>
+            <button nbButton size="tiny" shape="round" class="p-1" status="danger" *ngIf="edit[data.indexOf(element)]" (click)="edit[data.indexOf(element)]=false">
+              <nb-icon pack="eva" icon="close-outline"></nb-icon>
+            </button>
+          </div>
+        </td>
+        <td #dataColumn class="border p-2 text-center" *ngFor="let column of columns" [attr.data-target]="element['apoointmentInfoId']" (click)="test(element['apoointmentInfoId'])">
+          <input type="text"  class="my-disabled text-center smart-table-input" *ngIf="column != 'apoointmentInfoId'" shape="round" fieldSize="small" [disabled]="!edit[data.indexOf(element)]" nbInput width="auto" disabled id="date" value="{{element[column]}}">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>

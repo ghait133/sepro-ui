@@ -5,7 +5,7 @@ import {HttpHeaders} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {
   SeProAuthStrategyOptions,
-  seProAuthStrategyOptions1} from './SeProAuthStrategyOptions';
+  seProAuthStrategyOptions1} from './seProAuthStrategyOptions';
 
 @Injectable()
 export class SeProAuthStrategy extends NbOAuth2AuthStrategy {

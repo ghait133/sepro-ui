@@ -1,0 +1,76 @@
+<div class="p-3">
+
+  <!--tabel head-->
+  <div class="row border p-0">
+    <div class="col-1 border-right p-3 text-center">col</div>
+    <div class="col border-right p-3 text-center">Weißanteil</div>
+    <div class="col border-right p-3 text-center">Haarstruktur</div>
+    <div class="col border-right p-3 text-center">Haarlänge</div>
+    <div class="col border-right p-3 text-center">Haarzustand</div>
+    <div class="col p-3 text-center">Kopfhaut</div>
+  </div>
+  <!--table Body-->
+  <div class="row border p-0">
+
+    <form class="col form-inline p-0 m-0">
+    <div class="col-1 border-right p-2 text-center">
+      <div class="buttons-row">
+        <button nbButton size="tiny" status="primary" shape="round" class="p-1" *ngIf="!edit" (click)="edit=true">
+          <nb-icon pack="eva" icon="edit-2-outline"></nb-icon>
+        </button>
+        <button nbButton size="tiny" shape="round" class="p-1 mr-2" status="success" *ngIf="edit">
+          <nb-icon pack="eva" icon="checkmark-outline"></nb-icon>
+        </button>
+        <button nbButton size="tiny" shape="round" class="p-1" status="danger" *ngIf="edit" (click)="edit=false">
+          <nb-icon pack="eva" icon="close-outline"></nb-icon>
+        </button>
+
+      </div>
+    </div>
+    <div class="col border-right p-2 text-center">
+      <input type="email" disabled class="my-disabled text-center" shape="round" fieldSize="small" *ngIf="!edit" nbInput  id="weissanteil" value="{{data.weissanteil}}">
+      <nb-select placeholder="SWeißanteil" shape="round" size="small" class="text-center" [(selected)]="data.weissanteil" *ngIf="edit">
+        <nb-option value="0%">0%</nb-option>
+        <nb-option value="30%">30%</nb-option>
+        <nb-option value="60%">60%</nb-option>
+        <nb-option value="100%">100%</nb-option>
+      </nb-select>
+    </div>
+    <div class="col border-right p-2 text-center">
+      <input type="email" disabled class="my-disabled text-center" shape="round" fieldSize="small" *ngIf="!edit" nbInput  id="haarstruktur" value="{{data.haarstruktur}}">
+      <nb-select placeholder="Haarstruktur" shape="round" size="small" class="text-center" [(selected)]="data.haarstruktur" *ngIf="edit">
+        <nb-option value="fein">fein</nb-option>
+        <nb-option value="mittel">mittel</nb-option>
+        <nb-option value="kräftig">kräftig</nb-option>
+      </nb-select>
+    </div>
+    <div class="col border-right p-2 text-center">
+      <input type="email" disabled class="my-disabled text-center" shape="round" fieldSize="small" nbInput *ngIf="!edit"  id="haarlaenge" value="{{data.haarlaenge}}">
+      <nb-select placeholder="Haarlänge" shape="round" size="small" class="text-center" [(selected)]="data.haarlaenge" *ngIf="edit ">
+        <nb-option value="kurz">kurz</nb-option>
+        <nb-option value="kinnlang">kinnlang</nb-option>
+        <nb-option value="lang">lang</nb-option>
+        <nb-option value="normal">normal</nb-option>
+      </nb-select>
+    </div>
+    <div class="col border-right p-2 text-center">
+      <input type="email" disabled class="my-disabled text-center" shape="round" fieldSize="small" nbInput *ngIf="!edit "  id="haarzustand" value="{{data.haarzustand }}">
+
+      <nb-select placeholder="Haarzustand" shape="round" size="small" class="text-center" [(selected)]="data.haarzustand " *ngIf="edit ">
+        <nb-option value="dauergewellt">dauergewellt</nb-option>
+        <nb-option value="gefärbt">gefärbt/ getönt</nb-option>
+        <nb-option value="troken">porös/ trocken</nb-option>
+        <nb-option value="spliß">Spliß</nb-option>
+      </nb-select>
+    </div>
+    <div class="col p-2 text-center">
+      <input type="email" disabled class="my-disabled text-center" shape="round" fieldSize="small" nbInput *ngIf="!edit "  id="kopfhaut" value="{{data.kopfHautZustand }}">
+      <nb-select placeholder="Kopfhautzustand" shape="round" size="small" class="text-center" [(selected)]="data.kopfHautZustand " *ngIf="edit ">
+        <nb-option value="troken">empfindlich/ trocken</nb-option>
+        <nb-option value="fettig">fettig</nb-option>
+        <nb-option value="schuppig">schuppig</nb-option>
+      </nb-select>
+    </div>
+  </form>
+  </div>
+</div>

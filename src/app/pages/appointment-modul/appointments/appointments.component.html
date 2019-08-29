@@ -1,0 +1,96 @@
+<div class="row justify-content-between justify-content-center align-items-center h-100">
+  <div class="col">
+    <div class="text-muted" id="titelCostumComponent" >
+      <h5>Ihre Kundenübersicht</h5>
+    </div>
+  </div>
+  <div class="col text-right">
+    <div class="buttons-row mb-2">
+      <button nbButton  outline size="medium" shape="rectangle" class="">
+        <nb-icon pack="eva"icon="person-add-outline" class="mr-2"></nb-icon> Termin erstellen
+      </button>
+    </div>
+  </div>
+</div>
+<nb-card>
+  <nb-card-body>
+    <div class="my-2">
+      <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" placeholder="Suche">
+    </div>
+
+
+    <table [nbTreeGrid]="dataSource" equalColumnsWidth>
+      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+
+      <ng-container [nbTreeGridColumnDef]="personsColumn" >
+        <td nbTreeGridCell *nbTreeGridCellDef="let row" class="border-0">
+          <div class="p-1">
+            <nb-user size="medium"
+                     name= "{{row.data[personsColumn]['employee']}}"
+                     title="Friseur Meisterin">
+            </nb-user>
+          </div>
+          <div class="p-1">
+            <span class="px-2"><nb-icon pack="eva" icon="person-outline"></nb-icon> <span>{{row.data[personsColumn]['customer']}}</span></span>
+            <span class="px-2"><nb-icon pack="eva" icon="scissors-outline"></nb-icon> <span>{{row.data[personsColumn]['service']}}</span></span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container [nbTreeGridColumnDef]="dateColumn" >
+        <td nbTreeGridCell *nbTreeGridCellDef="let row" class="border-0">
+          <div class="container align-items-center justify-content-center">
+            <div>
+              <nb-icon pack="eva" icon="calendar-outline"></nb-icon>
+              <span style="white-space: pre-line">{{row.data[dateColumn]['date']}}</span>
+            </div>
+            <div>
+              <nb-icon pack="eva" icon="clock-outline"></nb-icon>
+              <span>{{row.data[dateColumn]['start']}} - {{row.data[dateColumn]['end']}}</span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container [nbTreeGridColumnDef]="infoColumn" >
+
+        <td nbTreeGridCell *nbTreeGridCellDef="let row" class="border-0" >
+          <div class="row justify-content-center align-items-center h-100" >
+            <div class="buttons-row">
+              <button nbButton nbTooltip="Termin Informationen" size="tiny" shape="round" class="p-1" status="info">
+                <nb-icon pack="eva" icon="calendar-outline"></nb-icon>
+              </button>
+              <button nbButton nbTooltip="Kunden Informationen" size="tiny" shape="round" class="p-1" status="danger" (click)="openInfoPopup(row.data['customer'])">
+                <nb-icon pack="eva" icon="person-outline"></nb-icon>
+              </button>
+              <button nbButton nbTooltip="Termin Historie" size="tiny" shape="round" class="p-1" status="warning">
+                <nb-icon pack="eva" icon="file-text-outline"></nb-icon>
+              </button>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container [nbTreeGridColumnDef]="aktionColumn" >
+        <td nbTreeGridCell *nbTreeGridCellDef="let row" class="border-0">
+          <div class="mx-auto my-0 w-50">
+            <button nbButton size="tiny" hero shape="round" class="p-1" status="danger" style="width: 80px">
+              stornieren
+            </button>
+          </div>
+          <div class="mx-auto my-0 w-50">
+            <button nbButton size="tiny" hero shape="round" class="p-1" status="warning" style="width: 80px">
+              verschieben
+            </button>
+          </div>
+          <div class="mx-auto my-0 w-50">
+            <button nbButton size="tiny" hero shape="round" class="p-1" status="success" style="width: 80px">
+              buchen
+            </button>
+          </div>
+        </td>
+      </ng-container>
+    </table>
+  </nb-card-body>
+</nb-card>

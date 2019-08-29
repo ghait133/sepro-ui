@@ -1,100 +1,114 @@
-<!--
-
-<nb-card accent="info">
-  <div class="card-row">
-
-    <div class="card-col">
-      <nb-card size="large">
-        <nb-card-header>Kundenübersicht</nb-card-header>
-        <nb-card-body>
-
-          <nb-card size="large">
-            <nb-list>
-              <nb-list-item *ngFor="let hero of heroes">
-
-                <nb-layout>
-
-                  <nb-layout-header>
-                    <nb-layout-column>
-                      <nb-action size="small" icon="person-outline">  </nb-action>
-                    </nb-layout-column>
-                    <nb-layout-column>
-                      <nb-user [name]="hero.title + ' ' + hero.name + ' ' + hero.lastname" [title]="hero.lastVisit" ></nb-user>
-                    </nb-layout-column>
-                  </nb-layout-header>
-
-                </nb-layout>
-
-              </nb-list-item>
-            </nb-list>
-          </nb-card>
-
-        </nb-card-body>
-      </nb-card>
-    </div>
+<div class="row justify-content-between justify-content-center align-items-center h-100">
+<div class="col">
+  <div class="text-muted" id="titelCostumComponent" >
+    <h5>Ihre Kundenübersicht</h5>
   </div>
-</nb-card>
--->
-<div class="col-md-12 col-lg-12 col-xxxl-6">
-  <nb-card class="list-card" size="small">
-    <nb-card-header>Kundenübersicht</nb-card-header>
-    <nb-list>
-      <nb-list-item *ngFor="let user of heroes">
-        <div class="row">
-          <div class="col">
-            <div class="row">
-              <div class="col-2 pr-1">
-                <nb-icon pack="eva" icon="person-outline"></nb-icon>
-              </div>
-              <div class="col font-weight-bold">
-                <span>Karim Rakia</span>
-              </div>
+</div>
+<div class="col">
+  <div class="buttons-row mb-2 text-right">
 
+  <button nbButton  outline size="medium" shape="rectangle" class="" (click)="openAddCostumerComponent()">
+    <nb-icon pack="eva"icon="person-add-outline" class="mr-2"></nb-icon> Kunde erstellen
+  </button>
+  <button nbButton  outline size="medium" shape="rectangle" class="" (click)="openImportCustomer()">
+    <nb-icon pack="eva"icon="person-add-outline" class="mr-2"></nb-icon>Kunde importieren
+  </button>
+
+  </div>
+</div>
+</div>
+<nb-card>
+  <nb-card-header>
+   <!-- <div class="row justify-content-between">
+      <div class="col-3">
+        Kundenübersicht
+      </div>
+      <div class="col-3">
+        <button nbButton size="giant" hero shape="rectangle" class="p-1 px-3" status="success" style="width: 125px">
+          <small><nb-icon pack="eva" icon="plus-outline" class="mx-2"></nb-icon>Termin</small>
+        </button>
+      </div>
+    </div>-->
+    <div class="row justify-content-between justify-content-center align-items-center h-100">
+      <div class="col-4">
+          <div class="text-muted" id="" >
+            <div class="my-2">
+              <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input fontAwesome" placeholder="Suche">
             </div>
-            <div class="row">
-              <div class="col-2 pr-1"></div>
-              <div class="col-10">
+          </div>
+      </div>
+      <div class="col-3">
 
-                <span><small class="text-muted">
+      </div>
+    </div>
+
+  </nb-card-header>
+
+  <nb-card-body>
+
+    <table [nbTreeGrid]="dataSource" equalColumnsWidth>
+      <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: defaultColumns" class="list-elemenet"></tr>
+
+
+      <ng-container [nbTreeGridColumnDef]="dataColumn" >
+        <td nbTreeGridCell *nbTreeGridCellDef="let row" class="border-0">
+          <div class="row">
+            <div class="col-2 pr-1">
+              <nb-icon pack="eva" icon="person-outline"></nb-icon>
+            </div>
+            <div class="col" >
+              <div><span class="font-weight-bold">{{row.data['name']}}</span></div>
+              <div>
+                 <span><small class="text-muted">
                   <span class="mr-2"><nb-icon pack="eva" icon="phone-outline" style="font-size: small"></nb-icon></span>
-                  <span>0172 6160243</span>
+                  <span>{{row.data['telnumber']}}</span>
                 </small></span>
               </div>
-            </div>
-
-            <div class="row">
-              <div class="col-2 pr-1"></div>
-              <div class="col-10 justify-content-end">
+              <div>
                 <span><small class="text-muted">
                   <span class="mr-2"><nb-icon pack="eva" icon="email-outline" style="font-size: small"></nb-icon></span>
-                  <span>ghait61@gmail.com</span>
+                  <span>{{row.data['email']}}</span>
                 </small></span>
               </div>
             </div>
-
           </div>
-          <div class="col container h-auto ">
-            <div class="row justify-content-center align-items-center h-100">
-              <div class="buttons-row">
-                <button nbButton size="tiny" shape="round" class="p-1" (click)="openInfoPopup(user)">
-                  <nb-icon pack="eva" icon="info-outline"></nb-icon>
-                </button>
-                <button nbButton size="tiny" shape="round" class="p-1" status="danger" (click)="openCustomerHistoryPopup(user)">
-                  <nb-icon pack="eva" icon="calendar-outline"></nb-icon>
-                </button>
-                <button nbButton size="tiny" shape="round" class="p-1" status="warning">
+        </td>
+      </ng-container>
 
-                  <small><nb-icon pack="eva" icon="message-circle-outline"></nb-icon></small>
-                </button>
-              </div>
+      <ng-container [nbTreeGridColumnDef]="infoColumn" >
+        <td nbTreeGridCell *nbTreeGridCellDef="let row" class="border-0">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="buttons-row">
+              <button nbButton size="tiny" shape="round" class="p-1" (click)="openInfoPopup(row.data['info']['customer'])">
+                <nb-icon pack="eva" icon="info-outline"></nb-icon>
+              </button>
+              <button nbButton size="tiny" shape="round" class="p-1" status="danger" (click)="openCustomerHistoryPopup(row.data['info']['customer'])">
+                <nb-icon pack="eva" icon="calendar-outline"></nb-icon>
+              </button>
+              <button nbButton size="tiny" shape="round" class="p-1" status="warning">
+
+                <small><nb-icon pack="eva" icon="message-circle-outline"></nb-icon></small>
+              </button>
             </div>
-
           </div>
-          <div class="col">col3</div>
-        </div>
-      </nb-list-item>
-    </nb-list>
-  </nb-card>
-</div>
+        </td>
+      </ng-container>
 
-Artikelnummer Bezeichnung Datum
+      <ng-container [nbTreeGridColumnDef]="actionColumn" >
+        <td nbTreeGridCell *nbTreeGridCellDef="let row" class="border-0">
+          <div class="mx-auto my-0 w-50">
+            <button nbButton size="giant" hero shape="rectangle" class="p-1 px-3" status="primary" style="width: 125px">
+              <small><nb-icon pack="eva" icon="scissors-outline" class="mx-2"></nb-icon>Termin</small>
+            </button>
+          </div>
+          <div class="mx-auto my-0 w-50">
+            <button routerLink="{{row.data['info']['customer']['id']}}" nbButton size="giant" hero shape="rectangle" class="p-1 px-3" status="primary" style="width: 125px">
+              <small><nb-icon pack="eva" icon="book-open-outline" class="mx-2"></nb-icon>Details</small>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+    </table>
+  </nb-card-body>
+</nb-card>
+

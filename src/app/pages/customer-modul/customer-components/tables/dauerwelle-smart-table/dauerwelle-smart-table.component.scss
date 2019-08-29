@@ -1,0 +1,30 @@
+
+@import '../../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .my-disabled[disabled] {
+    color: #3a3a3a !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    max-width: 7rem !important;
+
+  }
+  .buttons-row {
+    margin: -0.5rem;
+  }
+  .smart-table-input {
+    max-width: 7rem !important;
+  }
+  button[nbButton] {
+    margin: 0.5rem;
+  }
+  .nb-theme-default nb-select.appearance-outline .select-button[disabled] {
+    color: #1a2138;
+    background-color: #f7f9fc0a;
+    border-color: #f7f9fc0a;
+  }
+  .heilight {
+    background: yellow;
+  }
+
+}
