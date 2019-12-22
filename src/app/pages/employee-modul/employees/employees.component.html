@@ -1,1 +1,66 @@
 <p>employees works!</p>
+<nb-card>
+  <nb-card-header>
+    Stammdaten
+  </nb-card-header>
+  <nb-card-body>
+    <div>
+      <table class="w-100 border">
+        <thead class="border">
+        <tr>
+          <th *ngFor="let hour of hours" colspan="4" class="calender-header-column border"> {{hour}}</th>
+        </tr>
+        </thead>
+        <tbody class="border">
+        <tr >
+          <ng-container *ngFor="let hour of hours">
+            <ng-container *ngFor="let min of mins">
+              <td [id]="getdate(hour, min)" [attr.data-date]="getdate(hour, min)" class="calender-body-column border">
+                xx
+              </td>
+            </ng-container>
+          </ng-container>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div mwlResizable
+      [enableGhostResize]="true"
+      [resizeEdges]="{bottom: false, right: true, top: false, left: false}"
+      (resizeStart)="onResizeStart($event)"
+      (resizeEnd)="onResizeEnd($event)"
+      (resizing)="onResizing($event)"
+         [attr.data-start]="getdate(8, 30)"
+         [attr.data-end]="getdate(9, 30)"
+         [attr.data-lenght]="getAppointmentLenght(getdate(8, 30),getdate(9, 30))"
+         class="appointment-min-box">
+      this is an appointment box
+    </div>
+    <div class="previewbox"></div>
+    <div mwlResizable
+         [enableGhostResize]="true"
+         [resizeEdges]="{bottom: false, right: true, top: false, left: false}"
+         (resizeStart)="onResizeStart($event)"
+         (resizeEnd)="onResizeEnd($event)"
+         (resizing)="onResizing($event)"
+          style="background: #2d8ac7">
+      resivable
+    </div>
+    <div
+      style="background: #2d8ac7"
+      cdkDrag
+      class="example-box">
+      draggable
+      <div class="example-handle" cdkDragHandle>
+        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+          <path d="M0 0h24v24H0z" fill="none"></path>
+        </svg>
+      </div>
+
+    </div>
+  </nb-card-body>
+</nb-card>
+
