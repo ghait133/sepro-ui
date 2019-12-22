@@ -89,7 +89,7 @@ export class CustomerService {
             'Authorization': 'bearer ' + this.token,
           },
         );
-      }else {
+      } else {
         this.router.navigate(['auth/login']);
       }
   }

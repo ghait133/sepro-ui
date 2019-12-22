@@ -10,7 +10,7 @@ export class DauerwelleSmartTableComponent implements OnInit {
   edit: boolean[] = [];
   @Input() data: any[];
   @Input()columns: string [];
-  qdata: any []= [
+  qdata: any [] = [
     {
       datum: '13.09.2019',
       vorbehandlung: '',
@@ -40,7 +40,7 @@ export class DauerwelleSmartTableComponent implements OnInit {
       nachbehandlung2: 'dkgjsig',
     },
   ];
-  editfields: any []= [];
+  editfields: any [] = [];
 
    // columns: string [] = Object.keys(this.data[0]);
 

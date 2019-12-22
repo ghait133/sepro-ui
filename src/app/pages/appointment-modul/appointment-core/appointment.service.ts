@@ -37,7 +37,7 @@ export class AppointmentService {
           'Authorization': 'bearer ' + this.token,
         },
       );
-    }else {
+    } else {
       this.router.navigate(['auth/login']);
     }
   }
