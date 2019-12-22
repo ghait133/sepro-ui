@@ -50,7 +50,7 @@ export class CustomerDetailsComponent implements OnInit {
         for (const item of list) {
           if (formName === 'stammdatenForm') {
             item.value = this.customer[item.id];
-          }else {
+          } else {
             item.value = this.customer.adresse[item.id];
           }
         }
